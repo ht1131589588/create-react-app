@@ -362,6 +362,19 @@ module.exports = function (webpackEnv) {
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
                 resolvePluginsRelativeTo: __dirname,
+                baseConfig: {
+                  parser: 'babel-eslint',
+                  settings: {
+                    react: {
+                      version: 'detect',
+                    },
+                  },
+                  plugins: ['react'],
+                  rules: {
+                    'react/jsx-uses-react': 'warn',
+                    'react/jsx-uses-vars': 'warn',
+                  },
+                },
               },
               loader: require.resolve('eslint-loader'),
             },
