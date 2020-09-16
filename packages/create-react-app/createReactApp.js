@@ -29,23 +29,23 @@
 
 'use strict';
 
-const https = require('https');
-const chalk = require('chalk');
-const commander = require('commander');
-const dns = require('dns');
-const envinfo = require('envinfo');
-const execSync = require('child_process').execSync;
-const fs = require('fs-extra');
-const hyperquest = require('hyperquest');
-const inquirer = require('inquirer');
-const os = require('os');
-const path = require('path');
-const semver = require('semver');
-const spawn = require('cross-spawn');
-const tmp = require('tmp');
-const unpack = require('tar-pack').unpack;
-const url = require('url');
-const validateProjectName = require('validate-npm-package-name');
+const https = require('https'); // nodejs https模块
+const chalk = require('chalk'); // 颜色工具
+const commander = require('commander'); // 命令行解析工具
+const dns = require('dns'); // 具有Web UI并使用Redis配置存储的DNS服务器
+const envinfo = require('envinfo'); // 用于生成有关对软件问题进行故障排除所需的常见详细信息的报告，例如您的操作系统，二进制版本，浏览器，安装的语言等
+const execSync = require('child_process').execSync; // 用于同步执行命令，使用exec默认最大是200k
+const fs = require('fs-extra'); // fs扩展，继承了fs，并新增了一些方法
+const hyperquest = require('hyperquest'); // 将http请求应答过程变成stream形式返回
+const inquirer = require('inquirer'); // 常见的交互式命令行用户界面的集合
+const os = require('os'); // nodejs os 模块，在cra中用于获取不同系统的结束标识：os.EOL
+const path = require('path'); // nodejs path 模块
+const semver = require('semver'); // Npm使用的语义版本解析器
+const spawn = require('cross-spawn'); // 封装了child_process.spawnSync 用于同步执行命令，与execSync类似，但不限制大小，并做了多系统兼容
+const tmp = require('tmp'); // 一个简单的node.js临时文件和目录创建器
+const unpack = require('tar-pack').unpack; // 用于解压tar压缩包
+const url = require('url'); // nodejs url 模块
+const validateProjectName = require('validate-npm-package-name'); // 验证npm包名是否合法
 
 const packageJson = require('./package.json');
 
