@@ -139,7 +139,7 @@ function init() {
       console.log();
     })
     .parse(process.argv);
-
+  // 打印cra信息和系统信息
   if (program.info) {
     console.log(chalk.bold('\nEnvironment Info:'));
     console.log(
@@ -169,6 +169,7 @@ function init() {
       .then(console.log);
   }
 
+  // 没有输入项目名称时，进行友好提示
   if (typeof projectName === 'undefined') {
     console.error('Please specify the project directory:');
     console.log(
@@ -188,10 +189,12 @@ function init() {
 
   // We first check the registry directly via the API, and if that fails, we try
   // the slower `npm view [package] version` command.
+  // 我们首先直接通过API检查注册表，如果失败，我们尝试较慢的 `npm view [package] version` 命令
   //
   // This is important for users in environments where direct access to npm is
   // blocked by a firewall, and packages are provided exclusively via a private
   // registry.
+  // 这对于防火墙阻止直接访问npm的环境中的用户很重要，而软件包仅通过私有注册表提供。
   checkForLatestVersion()
     .catch(() => {
       try {
@@ -251,8 +254,11 @@ function createApp(name, verbose, version, template, useNpm, usePnp) {
   const root = path.resolve(name);
   const appName = path.basename(root);
 
+  // 检查输入项目名称的合法性
   checkAppName(appName);
+  // 确保文件夹存在
   fs.ensureDirSync(name);
+  // 检查目录本身是否包含一些文件
   if (!isSafeToCreateProjectIn(root, name)) {
     process.exit(1);
   }
@@ -261,6 +267,7 @@ function createApp(name, verbose, version, template, useNpm, usePnp) {
   console.log(`Creating a new React app in ${chalk.green(root)}.`);
   console.log();
 
+  // 创建package.json
   const packageJson = {
     name: appName,
     version: '0.1.0',
@@ -271,6 +278,7 @@ function createApp(name, verbose, version, template, useNpm, usePnp) {
     JSON.stringify(packageJson, null, 2) + os.EOL
   );
 
+  // 是否使用Yarn进行安装
   const useYarn = useNpm ? false : shouldUseYarn();
   const originalDirectory = process.cwd();
   process.chdir(root);
